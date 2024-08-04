@@ -5,28 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لعبة اختيار الكلمات</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin: 0; 
+            padding: 0; 
+            background: #f4f4f4;
+        }
+        .container {
+            max-width: 600px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            background: white; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            border-radius: 8px;
+        }
         .hidden { display: none; }
-        button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+        button { 
+            margin: 10px; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        .button-correct { background: #4CAF50; color: white; }
+        .button-wrong { background: #f44336; color: white; }
+        .button-default { background: #008CBA; color: white; }
+        h1, h2, p { color: #333; }
     </style>
 </head>
 <body>
-    <div id="start-screen">
-        <h1>لعبة اختيار الكلمات</h1>
-        <button onclick="startGame()">ابدأ اللعبة</button>
-    </div>
-    
-    <div id="game-screen" class="hidden">
-        <h2 id="sentence">الجملة هنا</h2>
-        <div id="options"></div>
-        <button id="next-button" class="hidden" onclick="nextSentence()">الجملة التالية</button>
+    <div class="container">
+        <div id="start-screen">
+            <h1>لعبة اختيار الكلمات</h1>
+            <button class="button-default" onclick="startGame()">ابدأ اللعبة</button>
+        </div>
+        
+        <div id="game-screen" class="hidden">
+            <h2 id="sentence">الجملة هنا</h2>
+            <div id="options"></div>
+            <button id="next-button" class="hidden button-default" onclick="nextSentence()">الجملة التالية</button>
+        </div>
+
+        <div id="end-screen" class="hidden">
+            <h2>انتهت اللعبة!</h2>
+            <p id="score">النقاط: 0</p>
+            <p id="attempts">عدد المحاولات: 0</p>
+            <button class="button-default" onclick="restartGame()">إعادة اللعبة</button>
+        </div>
     </div>
 
-    <div id="end-screen" class="hidden">
-        <h2>انتهت اللعبة!</h2>
-        <p id="score">النقاط: 0</p>
-        <button onclick="restartGame()">إعادة اللعبة</button>
-    </div>
+    <audio id="correct-sound" src="correct.mp3" preload="auto"></audio>
+    <audio id="wrong-sound" src="wrong.mp3" preload="auto"></audio>
 
     <script src="game.js"></script>
 </body>
